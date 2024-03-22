@@ -4,7 +4,7 @@ AHA_URL = "http://earnaha.com"
 
 class PageName(Enum):
     PRE = 'PRE'
-    LOG_IN = 'LOG_IN'
+    LOG_IN = 'LOGIN'
     MAIN = 'MAIN'
     PROFILE = 'PROFILE'
 
