@@ -18,6 +18,6 @@ def load_yaml(exe_path):
 exe_paths = ['test_case.test_signup']
 for exe_path in exe_paths:
     print(f'---- {exe_path} -----')
-    test_case = importlib.import_module(exe_path)
+    test_case = importlib.import_module(exe_path).TestCase()
     test_data = load_yaml(exe_path)
-    test_case.test_act(test_data)
+    test_case.run_case(test_data)

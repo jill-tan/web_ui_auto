@@ -11,3 +11,9 @@ class PageName(Enum):
 class ELE_ACT(Enum):
     CLICK = 'CLICK'
     SEND_KEY = 'SEND_KEY'
+
+class TestResult(Enum):
+    PASS = "PASS"
+    FAIL = 'FAIL'
+    SKIP = 'SKIP'
+    ERROR = 'ERROR'
