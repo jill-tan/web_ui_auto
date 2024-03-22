@@ -1,27 +1,23 @@
-from page.page_manager import(
-  pre_page,
-  login_page,
-  main_page,
-  profile_page
-)
+import importlib
+import yaml
+import os
+from test_data.yaml_data import YamlData
 
-email = 'sunny90989@yahoo.com.tw'
-pwd = '^v9:ixs}kuQBuF#'
+def load_yaml(exe_path):
+    file_name = exe_path.replace('test_case.', "")
+    file_name = os.path.join('.', 'test_data', f'{file_name}.yml')
+    with open(file_name, 'r') as file:
+        test_data = yaml.safe_load(file)
+        return YamlData(test_data)
 
-
-# [1] LogOut
-# pre_page.click_login()
-# login_page.login_act(email, pwd)
-# main_page.logout_act()
-
-# [2] Edit Profile
-# pre_page.click_login()
-# login_page.login_act(email, pwd)
-# main_page.open_edit_profile()
-# profile_page.set_up_birthday()
-
-# [3] Sign Up
-# email1 = 'test20240321@gmail.com'
-# pre_page.click_signup()
-# login_page.signup_act(email1, pwd)
-
+# exe_paths = [
+# 'test_case.test_login',
+# 'test_case.test_logout',
+# 'test_case.test_signup'
+# ]
+exe_paths = ['test_case.test_signup']
+for exe_path in exe_paths:
+    print(f'---- {exe_path} -----')
+    test_case = importlib.import_module(exe_path)
+    test_data = load_yaml(exe_path)
+    test_case.test_act(test_data)

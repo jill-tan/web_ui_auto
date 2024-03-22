@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'exe_path',
+            choices: ['test_case.test_login', 'test_case.test_logout'],
+            description: ''
+        )
+    }
+
+    environment {
+        main = 'main.py'
+    }
+
+    stages {
+        stage('checkout code') {
+            steps {
+                checkout changelog: false, poll: false, scm: [
+                    $class: 'GitSCM',
+                    branches: [[name: "refs/heads/main"]],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [
+                        [
+                            $class: 'CloneOption',
+                            noTags: true,
+                            shallow: true,
+                            depth: 1
+                        ],
+                    ],
+                    submoduleCfg: [],
+                    userRemoteConfigs: [
+                        [
+                            credentialsId: 'git-web-ui-auto',
+                            url: 'git@github.com:jill-tan/web_ui_auto.git',
+                            name: 'origin',
+                            refspec: '+refs/heads/main:refs/remotes/origin/main'
+                        ]
+                    ]
+                ]
+            }
+        }
+
+        stage('install packages') {
+            steps {
+                script {
+                    def cmd = "pip install -r requirements.txt"
+                    sh(cmd)
+                }
+            }
+        }
+
+        stage('execute') {
+            steps {
+                script {
+                    def cmd = "python3.7 ${main}"
+                    sh(cmd)
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pass'
+        }
+    }
+}
