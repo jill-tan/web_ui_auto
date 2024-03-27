@@ -15,7 +15,7 @@ def load_yaml(exe_path):
 # 'test_case.test_logout',
 # 'test_case.test_signup'
 # ]
-exe_paths = ['test_case.test_signup']
+exe_paths = ['test_case.test_login']
 for exe_path in exe_paths:
     print(f'---- {exe_path} -----')
     test_case = importlib.import_module(exe_path).TestCase()

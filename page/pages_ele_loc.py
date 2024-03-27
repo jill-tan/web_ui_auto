@@ -14,6 +14,9 @@ class EleLoc:
     def add_pre_ele(self):
         self.__dict__["_login_btn_loc"] = (By.LINK_TEXT, "Log In")
         self.__dict__["_signup_btn_loc"] = (By.LINK_TEXT, "Sign Up")
+        self.__dict__["_have_google_frame_loc"] = (By.ID, "frameLocalStorage")
+        self.__dict__["_google_frame_loc"] = (By.ID, ["frameLocalStorage"])
+        self.__dict__["_close_google_loc"] = (By.XPATH, "//*/*[@id='close']")
 
     def add_login_ele(self):
         self.__dict__["_username_text_loc"] = (By.ID, "username")
@@ -22,9 +25,10 @@ class EleLoc:
         self.__dict__["_email_text_loc"] = (By.ID, "email")
 
     def add_main_ele(self):
-        self.__dict__["_profile_tab_loc"] = (By.CSS_SELECTOR, "div.css-1kxonj9:nth-child(4)")
+        self.__dict__["_profile_tab_loc"] = (By.CSS_SELECTOR, ".css-saektq > div:nth-child(1) > button:nth-child(1)")
+        self.__dict__["_expand_tab_loc"] = (By.CSS_SELECTOR, ".css-1yrns90 > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(1)")
         self.__dict__["_edit_profile_btn_loc"] = (By.CLASS_NAME, "em-button-base")
-        self.__dict__["_logout_btn"] = (By.XPATH, "//span[.='Log Out']")
+        self.__dict__["_logout_btn"] = (By.XPATH, "//p[.='Log out']")
         self.__dict__["_logout_yes_btn"] = (By.XPATH, "//button[.='Yes']")
 
         # logout_page
