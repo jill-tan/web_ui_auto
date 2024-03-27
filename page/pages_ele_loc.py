@@ -45,7 +45,6 @@ class PagesEleLoc:
     def _get_preperty_name(self, page_name: PageName):
         return f'_{page_name.value}_loc_dict'
 
-
     def _get_property_value(self, key):
         if key in self.__dict__.keys():
             return self.__dict__[key]
