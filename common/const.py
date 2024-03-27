@@ -11,6 +11,9 @@ class PageName(Enum):
 class ELE_ACT(Enum):
     CLICK = 'CLICK'
     SEND_KEY = 'SEND_KEY'
+    SWITCH_FRAME = 'SWITCH_FRAME'
+    CLICL_LOCATION = 'CLICL_LOCATION'
+    MOVE = 'Move'
 
 class TestResult(Enum):
     PASS = "PASS"

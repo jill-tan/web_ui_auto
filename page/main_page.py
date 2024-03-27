@@ -1,8 +1,3 @@
-# Notifications
-# Direct Messages
-# Avatar Marketplace
-# Profile -> logout
-
 from common.const import PageName
 from page.base_page import PageBase
 
@@ -14,13 +9,18 @@ class MainPage(PageBase):
     def _click_profile_tab(self, sleep_time=2):
         self.ele_click(*self.get_ele_loc("profile_tab_loc"), sleep_time=sleep_time)
 
+    def _click_expand_tab(self, sleep_time=2):
+        self.ele_click(*self.get_ele_loc("expand_tab_loc"), sleep_time=sleep_time)
+
     def open_edit_profile(self, sleep_time=2):
         self._click_profile_tab()
         self.ele_click(*self.get_ele_loc("edit_profile_btn_loc"), sleep_time=sleep_time)
 
     def logout_act(self):
         self._click_profile_tab()
-        self.ele_click(*self.get_ele_loc("logout_btn"))
+        self._click_expand_tab()
+        self.ele_move(*self.get_ele_loc("logout_btn"))
+        self.ele_click_loc(*self.get_ele_loc("logout_btn"))
         self.ele_click(*self.get_ele_loc("logout_yes_btn"))
 
         # check
